@@ -33,7 +33,7 @@ _tensorboard_metrics_plotter = TensorboardMetricsPlotter(_TENSORBOARD_LOG_DIR)
 
 
 def _get_git_revision_short_hash():
-    return True
+    return subprocess.check_output(['git', 'rev-parse', '--short', 'HEAD'])
 
 
 def _get_formatted_time(seconds):

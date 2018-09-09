@@ -112,14 +112,14 @@ def _log_sample_answers(x_test, nn_model, mode):
 
 
 def _log_train_info_for_one_batch(train_stats):
-    total_time = (time.time() - train_stats.start_time) / 3600  # in hours
+    total_time = (time.time() - train_stats.start_time) / 3600  + 1 # in hours
     total_train_time = train_stats.total_training_time / 3600  # in hours
     shifted_batch_id = train_stats.cur_batch_id + 1
 
     progress = float(shifted_batch_id) / train_stats.batches_num
     avr_time_per_batch = total_time / shifted_batch_id
     expected_time_per_epoch = avr_time_per_batch * train_stats.batches_num
-    total_training_time_in_percent = total_train_time
+    total_training_time_in_percent = total_train_time / total_time
 
     # use print here for better readability
     _logger.info('batch {batch_id} / {batches_num} ({progress:.1%}) \t'
